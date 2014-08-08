@@ -1,0 +1,98 @@
+{
+    "dependencies": [
+        {
+            "class": "ride\\web\\orm\\controller\\EventController",
+            "calls": [
+                {
+                    "method": "__construct",
+                    "arguments": [
+                        {
+                            "name": "model",
+                            "type": "call",
+                            "properties": {
+                                "interface": "ride\\library\\orm\\OrmManager",
+                                "method": "getEventModel"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setRoute",
+                    "arguments": [
+                        {
+                            "name": "action",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "index"
+                            }
+                        },
+                        {
+                            "name": "routeId",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "calendar.event.overview"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setRoute",
+                    "arguments": [
+                        {
+                            "name": "action",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "add"
+                            }
+                        },
+                        {
+                            "name": "routeId",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "calendar.event.add"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setRoute",
+                    "arguments": [
+                        {
+                            "name": "action",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "detail"
+                            }
+                        },
+                        {
+                            "name": "routeId",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "calendar.event.detail"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setRoute",
+                    "arguments": [
+                        {
+                            "name": "action",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "edit"
+                            }
+                        },
+                        {
+                            "name": "routeId",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "calendar.event.edit"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
