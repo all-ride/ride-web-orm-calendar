@@ -1,0 +1,46 @@
+{
+    "routes": [
+        {
+            "path": "/admin/calendar",
+            "controller": "ride\\web\\orm\\controller\\EventController",
+            "action": "indexAction",
+            "id": "calendar"
+        },
+        {
+            "path": "/admin/calendar/%locale%/events",
+            "controller": "ride\\web\\orm\\controller\\EventController",
+            "action": "indexAction",
+            "id": "calendar.event.overview"
+        },
+        {
+            "path": "/admin/calendar/%locale%/events/add",
+            "controller": "ride\\web\\orm\\controller\\EventController",
+            "action": "formAction",
+            "id": "calendar.event.add"
+        },
+        {
+            "path": "/admin/calendar/%locale%/events/%id%/detail",
+            "controller": "ride\\web\\orm\\controller\\EventController",
+            "action": "detailAction",
+            "id": "calendar.event.detail"
+        },
+        {
+            "path": "/admin/calendar/%locale%/events/%id%/edit",
+            "controller": "ride\\web\\orm\\controller\\EventController",
+            "action": "formAction",
+            "id": "calendar.event.edit"
+        },
+        {
+            "path": "/admin/calendar/%locale%/events/%event%/performances/add",
+            "controller": "ride\\web\\orm\\controller\\EventController",
+            "action": "performanceFormAction",
+            "id": "calendar.performance.add"
+        },
+        {
+            "path": "/admin/calendar/%locale%/events/%event%/performances/%id%/edit",
+            "controller": "ride\\web\\orm\\controller\\EventController",
+            "action": "performanceFormAction",
+            "id": "calendar.performance.edit"
+        }
+    ]
+}
