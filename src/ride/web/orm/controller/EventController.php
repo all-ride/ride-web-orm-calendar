@@ -209,7 +209,7 @@ class EventController extends ScaffoldController {
             'embed' => true,
         ));
         $form->addRow('editMode', 'option', array(
-            'default' => 'all',
+            'default' => 'instance',
             'options' => array(
                 'instance' => 'Instance',
                 'future' => 'Future',
@@ -440,9 +440,6 @@ class EventController extends ScaffoldController {
 
                 return;
             } catch (ValidationException $exception) {
-                echo '<pre>' . $exception->getTraceAsString() . '</pre>';
-                echo $exception->getErrorsAsString();
-
                 $this->setValidationException($exception, $form);
             }
         }
