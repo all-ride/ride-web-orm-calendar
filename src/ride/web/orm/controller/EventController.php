@@ -4,6 +4,7 @@ namespace ride\web\orm\controller;
 
 use ride\application\orm\calendar\entry\EventRepeaterEntry;
 
+use ride\library\http\Header;
 use ride\library\i18n\I18n;
 use ride\library\orm\entry\format\EntryFormatter;
 use ride\library\orm\model\Model;
@@ -47,8 +48,10 @@ class EventController extends ScaffoldController {
             return;
         }
 
+        $translator = $this->getTranslator();
+
         // performance table
-        $model = $this->orm->getEventPerformanceModel();
+        $this->model = $this->orm->getEventPerformanceModel();
         $locales = $i18n->getLocaleCodeList();
         $imageUrlGenerator = $this->dependencyInjector->get('ride\\library\\image\\ImageUrlGenerator');
 
@@ -62,12 +65,19 @@ class EventController extends ScaffoldController {
             'id' => '%id%',
         )) . '?referer=' . urlencode($this->request->getUrl());
 
-        $dataDecorator = new DataDecorator($model, null, $urlPerformanceEdit, 'id');
+        $dataDecorator = new DataDecorator($this->model, null, $urlPerformanceEdit, 'id');
 
-        $table = new ScaffoldTable($model, $this->getTranslator(), $this->locale, true, false);
+        $table = new ScaffoldTable($this->model, $this->getTranslator(), $this->locale, true, false);
         $table->addDecorator($dataDecorator);
-        $table->addDecorator(new LocalizeDecorator($model, $urlPerformanceEdit, $this->locale, $locales));
+        if ($this->model->getMeta()->isLocalized()) {
+            $table->addDecorator(new LocalizeDecorator($this->model, $urlPerformanceEdit, $this->locale, $locales));
+        }
         $table->getModelQuery()->addCondition('{event} = %1%', $id);
+        $table->addAction(
+            $translator->translate('button.delete'),
+            array($this, 'deletePerformance'),
+            $translator->translate('label.table.confirm.delete')
+        );
 
         $form = $this->processTable($table, $urlBase, 10, $this->orderMethod, $this->orderDirection);
         if ($this->response->willRedirect() || $this->response->getView()) {
@@ -108,6 +118,56 @@ class EventController extends ScaffoldController {
         ));
 
         $form->processView($view);
+    }
+
+    /**
+     * Action to delete the performance entries from the model
+     * @param array $entries Array of entries or entry primary keys
+     * @return null
+     */
+    public function deletePerformance($entries) {
+        if (!$entries || !$this->isDeletable()) {
+            return;
+        }
+
+        $entryFormatter = $this->orm->getEntryFormatter();
+        $format = $this->model->getMeta()->getFormat(EntryFormatter::FORMAT_TITLE);
+
+        foreach ($entries as $entry) {
+            if (is_numeric($entry)) {
+                $entryId = $entry;
+            } else {
+                $entryId = $entry->id;
+            }
+
+            if (!$this->isDeletable($entryId, false)) {
+
+            } else {
+                try {
+                    if (is_numeric($entry)) {
+                        $entry = $this->model->createProxy($entry);
+                    }
+
+                    $entry = $this->model->delete($entry);
+
+                    $this->addSuccess('success.data.deleted', array('data' => $entryFormatter->formatEntry($entry, $format)));
+                } catch (ValidationException $exception) {
+                    $errors = $exception->getAllErrors();
+                    foreach ($errors as $fieldName => $fieldErrors) {
+                        foreach ($fieldErrors as $fieldError) {
+                            $this->addError($fieldError->getCode(), $fieldError->getParameters());
+                        }
+                    }
+                }
+            }
+        }
+
+        $referer = $this->request->getHeader(Header::HEADER_REFERER);
+        if (!$referer) {
+            $referer = $this->request->getUrl();
+        }
+
+        $this->response->setRedirect($referer);
     }
 
     /**
@@ -231,10 +291,14 @@ class EventController extends ScaffoldController {
                 $data['performance']->event = $event;
                 $data['performance']->dateStart = $data['date']->dateStart;
                 $data['performance']->timeStart = $data['date']->timeStart;
-                $data['performance']->dateStop = $data['date']->dateStop;
                 $data['performance']->timeStop = $data['date']->timeStop;
                 $data['performance']->isDay = $data['date']->isDay;
                 $data['performance']->isPeriod = $data['date']->isPeriod;
+                if ($data['performance']->isPeriod) {
+                    $data['performance']->dateStop = $data['date']->dateStop;
+                } else {
+                    $data['performance']->dateStop = null;
+                }
 
                 if ($data['date']->isRepeat) {
                     // obtain repeater
