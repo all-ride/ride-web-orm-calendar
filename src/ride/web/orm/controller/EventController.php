@@ -48,6 +48,11 @@ class EventController extends ScaffoldController {
             return;
         }
 
+        // format entry for title
+        $format = $this->model->getMeta()->getFormat(EntryFormatter::FORMAT_TITLE);
+        $entryFormatter = $this->orm->getEntryFormatter();
+        $title = $entryFormatter->formatEntry($entry, $format);
+
         $translator = $this->getTranslator();
 
         // performance table
@@ -83,11 +88,6 @@ class EventController extends ScaffoldController {
         if ($this->response->willRedirect() || $this->response->getView()) {
             return;
         }
-
-        // format entry for title
-        $format = $this->model->getMeta()->getFormat(EntryFormatter::FORMAT_TITLE);
-        $entryFormatter = $this->orm->getEntryFormatter();
-        $title = $entryFormatter->formatEntry($entry, $format);
 
         // url's
         $urlBack = $this->request->getQueryParameter('referer');
