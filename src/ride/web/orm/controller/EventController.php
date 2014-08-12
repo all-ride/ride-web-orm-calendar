@@ -347,9 +347,9 @@ class EventController extends ScaffoldController {
 
                         $performances = $query->query();
 
-                        $fields = $performanceComponent->getFields();
-                        $fields['timeStart'] = 'timeStart';
-                        $fields['timeStop'] = 'timeStop';
+                        $properties = $performanceComponent->getRowNames();
+                        $properties['timeStart'] = 'timeStart';
+                        $properties['timeStop'] = 'timeStop';
 
                         $dates = $repeater->getDates($data['performance']->dateStart);
 
@@ -364,8 +364,8 @@ class EventController extends ScaffoldController {
                             }
 
                             // update non date fields
-                            foreach ($fields as $field) {
-                                $performance->$field = $data['performance']->$field;
+                            foreach ($properties as $property) {
+                                $performance->$property = $data['performance']->$property;
                             }
 
                             if ($repeater->occurences !== null && $occured > $repeater->occurences) {
@@ -413,7 +413,7 @@ class EventController extends ScaffoldController {
                                 $this->model->save($performance);
                             }
                         } else {
-                            // add the remlaining dates
+                            // add the remaining dates until dateUntil
                             while ($date = array_shift($dates)) {
                                 $performance = clone $data['performance'];
                                 $performance->id = 0;
