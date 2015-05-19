@@ -2,7 +2,7 @@
     "name": "ride/web-orm-calendar",
     "description": "Calendar implementation for the ORM of the Ride framework",
     "license": "MIT",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "authors": [
         {
             "name": "Joris Vandeweerd",
