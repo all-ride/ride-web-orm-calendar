@@ -2,6 +2,7 @@
     "dependencies": [
         {
             "class": "ride\\web\\orm\\controller\\EventController",
+            "id": "generic",
             "calls": [
                 {
                     "method": "__construct",
