@@ -178,7 +178,7 @@ class EventController extends ScaffoldController {
      * @param string $performance Id of the performance
      * @return null
      */
-    public function performanceFormAction(I18n $i18n, $locale, WebApplication $web, ReflectionHelper $reflectionHelper, ValidationFactory $validationFactory, $event, $id = null) {
+    public function performanceFormAction(I18n $i18n, $locale, WebApplication $web, EventRepeaterComponent $repeaterComponent, ReflectionHelper $reflectionHelper, $event, $id = null) {
         // resolve locale
         $this->locale = $i18n->getLocale($locale)->getCode();
 
@@ -253,8 +253,6 @@ class EventController extends ScaffoldController {
         $performanceComponent->omitField('isDay');
         $performanceComponent->omitField('repeater');
         $performanceComponent->omitField('isRepeaterEdited');
-
-        $repeaterComponent = new EventRepeaterComponent($reflectionHelper, $validationFactory);
 
         $form = $this->createFormBuilder($data);
         $form->setId('form-event-performance');

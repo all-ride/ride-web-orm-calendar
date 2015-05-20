@@ -1,6 +1,52 @@
 {
     "dependencies": [
         {
+            "interfaces": ["ride\\library\\form\\component\\Component", "ride\\web\\orm\\form\\EventRepeaterComponent"],
+            "class": "ride\\web\\orm\\form\\EventRepeaterComponent",
+            "id": "event.repeater",
+            "calls": [
+                {
+                    "method": "setAllowDay",
+                    "arguments": [
+                        {
+                            "name": "allowDay",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "calendar.event.day",
+                                "default": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setAllowPeriod",
+                    "arguments": [
+                        {
+                            "name": "allowPeriod",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "calendar.event.period",
+                                "default": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setAllowRepeat",
+                    "arguments": [
+                        {
+                            "name": "allowRepeat",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "calendar.event.repeat",
+                                "default": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "class": "ride\\web\\orm\\controller\\EventController",
             "id": "generic",
             "calls": [

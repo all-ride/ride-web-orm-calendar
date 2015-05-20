@@ -1,0 +1,3 @@
+calendar.event.day          Flag to see if a full day is possible for a performance of a calendar event
+calendar.event.period       Flag to see if a period is possible for a performance of a calendar event
+calendar.event.repeat       Flag to see if a repeated event is possible for a performance of a calendar event
