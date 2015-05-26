@@ -46,6 +46,18 @@ class EventRepeaterComponent extends AbstractComponent {
     protected $allowRepeat;
 
     /**
+     * Format for the placeholder of a date field
+     * @var string
+     */
+    protected $dateFormat;
+
+    /**
+     * Format for the placeholder of a time field
+     * @var string
+     */
+    protected $timeFormat;
+
+    /**
      * Constructs a new scaffold form component
      * @param \ride\library\validation\factory\ValidationFactory $validationFactory
      * @return null
@@ -56,6 +68,8 @@ class EventRepeaterComponent extends AbstractComponent {
         $this->allowDay = true;
         $this->allowPeriod = true;
         $this->allowRepeat = true;
+        $this->dateFormat = 'Y-m-d';
+        $this->timeFormat = 'H:i';
     }
 
     /**
@@ -83,6 +97,24 @@ class EventRepeaterComponent extends AbstractComponent {
      */
     public function setAllowRepeat($allowRepeat) {
         $this->allowRepeat = $allowRepeat;
+    }
+
+    /**
+     * Sets the date format for the placeholders of the date fields
+     * @param string $dateFormat
+     * @return null
+     */
+    public function setDateFormat($dateFormat) {
+        $this->dateFormat = $dateFormat;
+    }
+
+    /**
+     * Sets the date format for the placeholders of the time fields
+     * @param string $timeFormat
+     * @return null
+     */
+    public function setTimeFormat($timeFormat) {
+        $this->timeFormat = $timeFormat;
     }
 
     /**
@@ -178,14 +210,14 @@ class EventRepeaterComponent extends AbstractComponent {
         $builder->addRow('dateStart', 'date', array(
             'attributes' => array(
                 'class' => 'start date',
-                'placeholder' => date('Y-m-d')
+                'placeholder' => date($this->dateFormat)
             ),
             'round' => true,
         ));
         $builder->addRow('timeStart', 'time', array(
             'attributes' => array(
                 'class' => 'start time',
-                'placeholder' => date('H:i'),
+                'placeholder' => date($this->timeFormat),
             ),
         ));
 
@@ -193,7 +225,7 @@ class EventRepeaterComponent extends AbstractComponent {
             $builder->addRow('dateStop', 'date', array(
                 'attributes' => array(
                     'class' => 'stop date',
-                    'placeholder' => date('Y-m-d')
+                    'placeholder' => date($this->dateFormat)
                 ),
                 'round' => true,
             ));
@@ -202,7 +234,7 @@ class EventRepeaterComponent extends AbstractComponent {
         $builder->addRow('timeStop', 'time', array(
             'attributes' => array(
                 'class' => 'stop time',
-                'placeholder' => date('H:i'),
+                'placeholder' => date($this->timeFormat),
             ),
         ));
 
@@ -278,6 +310,9 @@ class EventRepeaterComponent extends AbstractComponent {
             ));
             $builder->addRow('dateUntil', 'date', array(
                 'label' => $translator->translate('label.until'),
+                'attributes' => array(
+                    'placeholder' => date($this->timeFormat),
+                ),
                 'round' => true,
             ));
 
