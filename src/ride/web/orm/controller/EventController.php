@@ -242,7 +242,7 @@ class EventController extends ScaffoldController {
         // create form
         $translator = $this->getTranslator();
 
-        $performanceComponent = new ScaffoldComponent($web, $reflectionHelper, $this->model);
+        $performanceComponent = new ScaffoldComponent($web, $reflectionHelper, $this->getSecurityManager(), $this->model);
         $performanceComponent->setLocale($locale);
         $performanceComponent->omitField('event');
         $performanceComponent->omitField('dateStart');
