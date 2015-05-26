@@ -43,6 +43,32 @@
                             }
                         }
                     ]
+                },
+                {
+                    "method": "setDateFormat",
+                    "arguments": [
+                        {
+                            "name": "dateFormat",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "calendar.format.date",
+                                "default": "Y-m-d"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setTimeFormat",
+                    "arguments": [
+                        {
+                            "name": "timeFormat",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "calendar.format.time",
+                                "default": "H:m"
+                            }
+                        }
+                    ]
                 }
             ]
         },
