@@ -292,7 +292,7 @@ class EventController extends ScaffoldController {
                 $data['performance']->timeStop = $data['date']->timeStop;
                 $data['performance']->isDay = $data['date']->isDay;
                 $data['performance']->isPeriod = $data['date']->isPeriod;
-                if ($data['performance']->isPeriod) {
+                if ($data['date']->isPeriod) {
                     $data['performance']->dateStop = $data['date']->dateStop;
                 } else {
                     $data['performance']->dateStop = null;
