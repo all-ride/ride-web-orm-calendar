@@ -206,7 +206,7 @@ class EventController extends ScaffoldController {
                 return;
             }
         } else {
-            $performance = $this->model->createEntry();
+            $performance = $this->createEntry();
             $performance->event = $event;
         }
 
