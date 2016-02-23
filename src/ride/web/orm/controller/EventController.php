@@ -8,10 +8,11 @@ use ride\library\http\Header;
 use ride\library\i18n\I18n;
 use ride\library\orm\entry\format\EntryFormatter;
 use ride\library\orm\model\Model;
-use ride\library\reflection\ReflectionHelper;
 use ride\library\validation\constraint\ConditionalConstraint;
 use ride\library\validation\exception\ValidationException;
 use ride\library\validation\factory\ValidationFactory;
+
+use ride\service\OrmService;
 
 use ride\web\orm\form\ScaffoldComponent;
 use ride\web\orm\form\EventRepeaterComponent;
@@ -178,7 +179,7 @@ class EventController extends ScaffoldController {
      * @param string $performance Id of the performance
      * @return null
      */
-    public function performanceFormAction(I18n $i18n, $locale, WebApplication $web, EventRepeaterComponent $repeaterComponent, ReflectionHelper $reflectionHelper, $event, $id = null) {
+    public function performanceFormAction(I18n $i18n, $locale, WebApplication $web, OrmService $ormService, EventRepeaterComponent $repeaterComponent, $event, $id = null) {
         // resolve locale
         $this->locale = $i18n->getLocale($locale)->getCode();
 
@@ -242,7 +243,7 @@ class EventController extends ScaffoldController {
         // create form
         $translator = $this->getTranslator();
 
-        $performanceComponent = new ScaffoldComponent($web, $reflectionHelper, $this->getSecurityManager(), $this->model);
+        $performanceComponent = new ScaffoldComponent($web, $this->getSecurityManager(), $ormService, $this->model);
         $performanceComponent->setLocale($locale);
         $performanceComponent->omitField('event');
         $performanceComponent->omitField('dateStart');
