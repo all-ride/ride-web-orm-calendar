@@ -5,9 +5,11 @@ namespace ride\web\orm\controller;
 use ride\application\orm\calendar\entry\EventRepeaterEntry;
 
 use ride\library\http\Header;
+use ride\library\http\Response;
 use ride\library\i18n\I18n;
 use ride\library\orm\entry\format\EntryFormatter;
 use ride\library\orm\model\Model;
+use ride\library\security\exception\UnauthorizedException;
 use ride\library\validation\constraint\ConditionalConstraint;
 use ride\library\validation\exception\ValidationException;
 use ride\library\validation\factory\ValidationFactory;
@@ -110,7 +112,7 @@ class EventController extends ScaffoldController {
             'entry' => $entry,
             'editUrl' => $this->getAction(self::ACTION_EDIT, array('id' => $id)) . $urlReferer,
             'backUrl' => $urlBack,
-            'addPerformanceUrl' => $urlPerformanceAdd,
+            'addPerformanceUrl' => $urlPerformanceAdd . $urlReferer,
             'form' => $form->getView(),
             'table' => $table,
             'locales' => $locales,
