@@ -75,7 +75,7 @@ class EventController extends ScaffoldController {
 
         $dataDecorator = new DataDecorator($this->model, null, $urlPerformanceEdit, 'id');
 
-        $table = new ScaffoldTable($this->model, $this->getTranslator(), $this->locale, true, false);
+        $table = new ScaffoldTable($this->model, $this->getTranslator(), $this->locale, true, true);
         $table->addDecorator($dataDecorator);
         if ($this->model->getMeta()->isLocalized()) {
             $table->addDecorator(new LocalizeDecorator($this->model, $urlPerformanceEdit, $this->locale, $locales));
