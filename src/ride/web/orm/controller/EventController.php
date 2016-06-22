@@ -81,6 +81,7 @@ class EventController extends ScaffoldController {
             $table->addDecorator(new LocalizeDecorator($this->model, $urlPerformanceEdit, $this->locale, $locales));
         }
         $table->getModelQuery()->addCondition('{event} = %1%', $id);
+        $table->getModelQuery()->addOrderBy('dateStart');
         $table->addAction(
             $translator->translate('button.delete'),
             array($this, 'deletePerformance'),
