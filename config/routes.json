@@ -41,6 +41,12 @@
             "controller": "ride\\web\\orm\\controller\\EventController",
             "action": "performanceFormAction",
             "id": "calendar.performance.edit"
+        },
+        {
+            "path": "/admin/system/calendar",
+            "controller": "ride\\web\\orm\\controller\\EventController",
+            "action": "settingsAction",
+            "id": "system.calendar"
         }
     ]
 }

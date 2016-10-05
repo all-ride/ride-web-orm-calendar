@@ -11,7 +11,7 @@
     ],
     "require": {
         "ride/app-orm": ">=0.2.0",
-        "ride/app-orm-calendar": ">=0.1.0",
+        "ride/app-orm-calendar": ">=0.2.0",
         "ride/lib-common": ">=0.1.0",
         "ride/lib-form": ">=0.10.0",
         "ride/lib-html": ">=0.2.3",
