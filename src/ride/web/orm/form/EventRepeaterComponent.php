@@ -311,7 +311,7 @@ class EventRepeaterComponent extends AbstractComponent {
             $builder->addRow('dateUntil', 'date', array(
                 'label' => $translator->translate('label.until'),
                 'attributes' => array(
-                    'placeholder' => date($this->timeFormat),
+                    'placeholder' => date($this->dateFormat),
                 ),
                 'round' => true,
             ));

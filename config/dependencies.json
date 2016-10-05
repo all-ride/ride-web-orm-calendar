@@ -166,6 +166,56 @@
                     ]
                 }
             ]
+        },
+        {
+            "class": "ride\\web\\base\\menu\\MenuItem",
+            "id": "system.calendar",
+            "calls": [
+                {
+                    "method": "setTranslation",
+                    "arguments": [
+                        {
+                            "name": "key",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "title.system.calendar"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setRoute",
+                    "arguments": [
+                        {
+                            "name": "id",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "system.calendar"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "class": "ride\\web\\base\\menu\\Menu",
+            "extends": "system",
+            "id": "system",
+            "calls": [
+                {
+                    "method": "addMenuItem",
+                    "arguments": [
+                        {
+                            "name": "menuItem",
+                            "type": "dependency",
+                            "properties": {
+                                "interface": "ride\\web\\base\\menu\\MenuItem",
+                                "id": "system.calendar"
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

@@ -1,0 +1,9 @@
+{
+    "label.calendar.allow.day": "All day",
+    "label.calendar.allow.day.description": "Add a checkbox to flag an item as an all day event",
+    "label.calendar.allow.period": "Period",
+    "label.calendar.allow.period.description": "Add a checkbox to enable an until date",
+    "label.calendar.allow.repeat": "Repeat",
+    "label.calendar.allow.repeat.description": "Add a checkbox to setup reoccurences",
+    "title.system.calendar": "Calendar"
+}
