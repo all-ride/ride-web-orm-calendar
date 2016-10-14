@@ -2,7 +2,6 @@
     "name": "ride/web-orm-calendar",
     "description": "Calendar implementation for the ORM of the Ride framework",
     "license": "MIT",
-    "version": "0.6.2",
     "authors": [
         {
             "name": "Joris Vandeweerd",
@@ -10,18 +9,19 @@
         }
     ],
     "require": {
-        "ride/app-orm": ">=0.2.0",
-        "ride/app-orm-calendar": ">=0.2.0",
-        "ride/lib-common": ">=0.1.0",
-        "ride/lib-form": ">=0.10.0",
-        "ride/lib-html": ">=0.2.3",
-        "ride/lib-i18n": ">=0.1.0",
-        "ride/lib-orm": ">=0.3.0",
-        "ride/lib-reflection": ">=0.4.0",
-        "ride/lib-validation": ">=0.4.0",
-        "ride/web": ">=0.4.0",
-        "ride/web-base": ">=0.5.0",
-        "ride/web-orm": ">=0.11.0"
+        "ride/app": "^1.0.0",
+        "ride/app-orm": "^1.0.0",
+        "ride/app-orm-calendar": "^1.0.0",
+        "ride/lib-common": "^1.0.0",
+        "ride/lib-form": "^1.0.0",
+        "ride/lib-html": "^1.0.0",
+        "ride/lib-i18n": "^1.0.0",
+        "ride/lib-orm": "^1.0.0",
+        "ride/lib-reflection": "^1.0.0",
+        "ride/lib-validation": "^1.0.0",
+        "ride/web": "^1.0.0",
+        "ride/web-base": "^1.0.0",
+        "ride/web-orm": "^1.0.0"
     },
     "autoload": {
         "psr-0": {
