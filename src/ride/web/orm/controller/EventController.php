@@ -19,7 +19,7 @@ use ride\web\orm\form\ScaffoldComponent;
 use ride\web\orm\form\EventRepeaterComponent;
 use ride\web\orm\table\scaffold\decorator\DataDecorator;
 use ride\web\orm\table\scaffold\decorator\LocalizeDecorator;
-use ride\web\orm\table\scaffold\ScaffoldTable;
+use ride\web\orm\table\PerformanceTable;
 use ride\web\WebApplication;
 
 /**
@@ -77,7 +77,7 @@ class EventController extends ScaffoldController {
         $dataDecorator = new DataDecorator($this->model, null, $urlPerformanceEdit, 'id');
         $dataDecorator->mapProperty('title', '{dateString}');
 
-        $table = new ScaffoldTable($this->model, $this->getTranslator(), $this->locale, true, true);
+        $table = new PerformanceTable($this->model, $this->getTranslator(), $this->locale, true, true);
         $table->addDecorator($dataDecorator);
         if ($this->model->getMeta()->isLocalized()) {
             $table->addDecorator(new LocalizeDecorator($this->model, $urlPerformanceEdit, $this->locale, $locales));
@@ -182,7 +182,7 @@ class EventController extends ScaffoldController {
 
         $this->response->setRedirect($referer);
     }
-    
+
     /**
      * Action to delete the localized performance entries from the model
      * @param array $entries Array of entries or entry primary keys
@@ -196,7 +196,7 @@ class EventController extends ScaffoldController {
         $entryFormatter = $this->orm->getEntryFormatter();
         $format = $this->model->getMeta()->getFormat(EntryFormatter::FORMAT_TITLE);
         $locale = $this->locale;
-        
+
         foreach ($entries as $entry) {
             if (is_numeric($entry)) {
                 $entryId = $entry;
