@@ -1,0 +1,9 @@
+{
+    "label.calendar.allow.day": "Hele dag",
+    "label.calendar.allow.day.description": "Voeg de hele dag optie toe",
+    "label.calendar.allow.period": "Periode",
+    "label.calendar.allow.period.description": "Voeg de stopdatum optie toe",
+    "label.calendar.allow.repeat": "Wederkerig",
+    "label.calendar.allow.repeat.description": "Voeg de wederkerigheid optie toe",
+    "title.system.calendar": "Kalender"
+}
