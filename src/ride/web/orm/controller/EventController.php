@@ -52,10 +52,8 @@ class EventController extends ScaffoldController {
 
         $meta = $this->model->getMeta();
 
-        // format entry for title
-        $format = $meta->getFormat(EntryFormatter::FORMAT_TITLE);
-        $entryFormatter = $this->orm->getEntryFormatter();
-        $title = $entryFormatter->formatEntry($entry, $format);
+        $title = $this->getViewTitle();
+        $subtitle = $this->getViewSubtitle($entry);
 
         $translator = $this->getTranslator();
 
@@ -119,6 +117,7 @@ class EventController extends ScaffoldController {
         $view = $this->setTemplateView('orm/scaffold/detail.event', array(
             'meta' => $meta,
             'title' => $title,
+            'subtitle' => $subtitle,
             'entry' => $entry,
             'editUrl' => $this->getAction(self::ACTION_EDIT, array('id' => $id)) . $urlReferer,
             'backUrl' => $urlBack,
@@ -574,7 +573,8 @@ class EventController extends ScaffoldController {
 
         $this->templateForm = 'orm/scaffold/form.performance';
 
-        $this->setFormView($form, $referer, $i18n->getLocaleCodeList(), $locale, $event);
+        $view = $this->setFormView($form, $referer, $i18n->getLocaleCodeList(), $locale, $event);
+        $view->getTemplate()->set('performance', $performance);
     }
 
     /**
@@ -584,15 +584,27 @@ class EventController extends ScaffoldController {
      * @return string
      */
     protected function getViewTitle($entry = null) {
-        if ($entry) {
-            return $entry->name;
-        }
-
         if ($this->translationTitle) {
             return $this->getTranslator()->translate($this->translationTitle);
         }
 
         return $this->model->getMeta()->getName();
+    }
+
+    /**
+     * Gets a subtitle for the view
+     * @param mixed $entry Entry which is being displayed, used only with the
+     * form view
+     * @return string
+     */
+    protected function getViewSubtitle($entry = null) {
+        $pkField = $this->pkField;
+
+        if (!$entry || !$entry->$pkField) {
+            return null;
+        }
+
+        return $entry->getName();
     }
 
     /**
