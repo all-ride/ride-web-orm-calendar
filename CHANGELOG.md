@@ -1,4 +1,10 @@
+# [1.0.3]
+
+## Updated
+- fixed bug in dependencies.json where timeformat had the wrong format 
+
 # [1.0.2]
+
 ## Updated
 - fixed title handling
 
