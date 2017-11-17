@@ -65,7 +65,7 @@
                             "type": "parameter",
                             "properties": {
                                 "key": "calendar.format.time",
-                                "default": "H:m"
+                                "default": "H:i"
                             }
                         }
                     ]
